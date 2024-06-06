@@ -5,8 +5,10 @@ import Navbar from "./components/Navbar/Navbar"
 import Home from './Pages/Home/Home'
 import Cart from './Pages/Cards/Cart'
 import PlaceOrd from "./Pages/PlaceOrder/PlaceOrd"
+import Footer from "./components/Footer/Footer"
 const App = () => {
   return (
+    <>
     <div className="app">
       <Navbar />
       <Routes>
@@ -15,6 +17,9 @@ const App = () => {
         <Route path="/PlaceOrder" element={<PlaceOrd />} />
       </Routes>
     </div>
+    <Footer />
+    </>
+
   )
 }
 
