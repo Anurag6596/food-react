@@ -37,3 +37,34 @@
     font-size: max(1vw,13px);
     border-radius: 6px ;
 }
+
+/* responsive header section  */
+
+@media (max-width:1050px){
+    /* .header{
+        height: 38v;
+    } this is not working so removed it 
+      */ 
+      
+    .header-content{
+        max-width: 45%;
+    }
+}
+
+@media (max-width:750px){
+    /* .header{
+        height: 38v;
+    } */
+    .header-content{
+        max-width: 65%;
+    }
+    .header-content p{
+        display: none;
+    }
+    .header-content button{
+        padding: 2vw 4vw;
+    }
+
+
+}
+
