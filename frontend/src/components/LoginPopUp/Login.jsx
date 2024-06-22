@@ -21,7 +21,7 @@ const Login = ({setShowLogin}) => {
             </div>
             <button>{currentState==="Sign Up"?"Create Account":"Login"}</button>
             <div className="login-condition">
-                <input type="checknox" required />
+                <input type="checkbox" required />
                 <p>By continuing this, i agree to the terms of use & privacy policy.</p>
             </div>
             {currentState==="Login"
