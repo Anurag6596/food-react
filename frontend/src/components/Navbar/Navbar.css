@@ -94,13 +94,13 @@
     }
 }
 @media (max-width:750px) {
-    /* .navbar .logo{
+    .navbar .logo{
         width: 140px;
-    } */
+    }
     .navbar-menu{
         display: none;
     }
-    /* .navbar-right{
+    .navbar-right{
         gap: 30px;
     }
     .navbar-right img{
@@ -108,5 +108,5 @@
     }
     .navbar-right button{
         padding: 8px 25px;
-    } */
+    }
 }
