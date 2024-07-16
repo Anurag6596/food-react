@@ -3,6 +3,7 @@
 import express from 'express'
 import cors from 'cors'
 import { connectDB } from './config/db.js'
+import foodRouter from './routes/foddRoute.js'
 
 
 // app config
@@ -19,6 +20,9 @@ app.use(cors()) // we can accesss the backend data from any frontend
 // db connection 
 
 connectDB();
+
+// API endpoint 
+app.use("/api/food",foodRouter)
 
 
 app.get("/",(req,res)=>{
