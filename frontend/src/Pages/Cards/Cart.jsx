@@ -38,6 +38,37 @@ const Cart = () => {
           }
         })}
       </div>
+        <div className="cart-bottom">
+          <div className="cart-total">
+            <h2>Cart Total</h2>
+            <div>
+              <div className="cart-total-details">
+                <p>SubTotal</p>
+                <p>{0}</p>
+              </div>
+              <hr />
+              <div className="cart-total-details">
+                <p>Delivery</p>
+                <p>{2}</p>
+              </div>
+              <hr />
+              <div className="cart-total-details">
+                <b>Total</b>
+                <b>{0}</b>
+              </div>
+            </div>
+              <button>Proceed to Order</button>
+          </div>
+          <div className="cart-promocode">
+            <div>
+              <p>If you Have a Promocode Enter it here.</p>
+              <div className="cart-promocode-input">
+                 <input type="text" placeholder="promocode"/>
+                 <button>Submit</button> 
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   )
 }
