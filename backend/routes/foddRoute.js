@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage})  // middle ware to add imnages to uploades folder
 
-foodRouter.post("/add",upload.single("image"),addFood)
+foodRouter.post("/add",addFood)
 
 
 
