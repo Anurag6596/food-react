@@ -5,7 +5,8 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Add from './components/pages/Add/Add';
 import List from './components/pages/List/List';
 import Orders from './components/pages/Orders/Orders';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -14,6 +15,7 @@ import Orders from './components/pages/Orders/Orders';
 const App = () => {
   return (
     <div>
+      <ToastContainer/>
       <Navbar />
       <hr />
       <div className="app-content">
