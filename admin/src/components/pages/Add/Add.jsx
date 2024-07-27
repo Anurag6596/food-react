@@ -1,60 +1,56 @@
-// import React from 'react'
 import { useState } from "react";
 import { assets } from "../../../assets/assets";
 import "./Add.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
 
-
-
-
 const Add = () => {
   const url = "http://localhost:4000";
-  const [image, setImage] = useState(false);
+  const [image, setImage] = useState(null);
+  const [name, setname] = useState("");
+  const [des, setdes] = useState("");
+  const [cat, setcat] = useState("");
+  const [price, setprice] = useState("");
 
-  const [data, setData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    category: "Salad",
-  });
 
-  const onChangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
-  };
+
+  // const [data, setData] = useState({
+  //   name: "",
+  //   description: "",
+  //   price: "",
+  //   category: "Salad",
+  // });
+
+  // const onChangeHandler = (event) => {
+  //   const { name, value } = event.target;
+  //   setData((prevData) => ({ ...prevData, [name]: value }));
+  // };
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("description", data.description);
-    formData.append("price", Number(data.price)); // to convert the string to number
-    formData.append("category", data.category);
-    formData.append("image", image);
-
-    // now to call api we will use axios
-
-    const response = await axios.post(`${url}/api/food/add`, formData); //this is the endpoint for uploading product
-
-    if (response.data.success) {
-      setData({
-        name: "",
-        description: "",
-        price: "",
-        category: "Salad",
-      })
-      setImage(false)
-      toast.success(response.data.message)
-    }
+    // const formData = new FormData();
+    // formData.append("name", name);
+    // formData.append("description", des);
+    // formData.append("price", Number(price)); // Convert string to number
+    // formData.append("category", cat);
+    // formData.append("image", image);
+console.log(name,des,price,cat)
+      const response = await axios.post(`${url}/api/food/add`,{name,description:des,category:cat,price});
+      console.log(response.data)
+      if (response.data) {
+        // setData({
+        //   name,
+        //   description,
+        //   price,
+        //   category,
+        // });
+        // setImage(false);
+        toast.success(response.data.message);
+      } else {
+        toast.error("food validation failed");
+      }
+     
   };
-
-  // to check wether our data is updatedor not
-
-  // useEffect(() => {
-  //     console.log(data);
-  // },[data])
 
   return (
     <div className="add">
@@ -64,45 +60,49 @@ const Add = () => {
           <label htmlFor="image">
             <img
               src={image ? URL.createObjectURL(image) : assets.upload_area}
-              alt=""
+              alt="Upload"
             />
             <input
               onChange={(e) => setImage(e.target.files[0])}
               type="file"
               id="image"
               hidden
-              required
+              // required
             />
           </label>
         </div>
         <div className="add-product-name flex-col">
           <p>Product Name</p>
           <input
-            onChange={onChangeHandler}
-            value={data.name}
+            onChange={(e)=>setname(e.target.value)}
+            // onChange={(e)=>console.log(e.target.value)}
+
+            value={name}
             type="text"
-            name="name"
-            placeholder="type here"
+            // name="name"
+            placeholder="Type here"
           />
         </div>
-        <div className="add-product-dicription flex-col">
-          <p>Prduct Discription</p>
+        <div className="add-product-description flex-col">
+          <p>Product Description</p>
           <textarea
-            onChange={onChangeHandler}
-            name="discription"
+            // onChange={onChangeHandler}
+            onChange={(e)=>setdes(e.target.value)}
+            
+            name="description"
             rows="6"
             placeholder="Write your description here"
             required
-          >
-            {" "}
-          </textarea>
+          />
         </div>
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>Product Category</p>
             <select
-              onChange={onChangeHandler}
-              value={data.category}
+              // onChange={onChangeHandler}
+            onChange={(e)=>setcat(e.target.value)}
+
+              value={cat}
               name="category"
             >
               <option value="Salad">Salad</option>
@@ -118,8 +118,10 @@ const Add = () => {
           <div className="add-price flex-col">
             <p>Product Price</p>
             <input
-              onChange={onChangeHandler}
-              value={data.price}
+              // onChange={onChangeHandler}
+            onChange={(e)=>setprice(e.target.value)}
+
+              value={price}
               type="number"
               name="price"
               placeholder="$20"
