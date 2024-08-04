@@ -4,6 +4,8 @@ import express from 'express'
 import cors from 'cors'
 import { connectDB } from './config/db.js'
 import foodRouter from './routes/foddRoute.js'
+import userRouter from './routes/userRoute.js'
+import 'dotenv/config'
 
 
 // app config
@@ -16,13 +18,13 @@ const port = 4000
 app.use(express.json())  // request from frontend to backend will be pardes here
 app.use(cors()) // we can accesss the backend data from any frontend
 
-
 // db connection 
 
 connectDB();
 
 // API endpoint 
-app.use("/api/food",foodRouter)
+app.use("/api/food",foodRouter);
+app.use("/api/user",userRouter);
 
 
 app.get("/",(req,res)=>{
