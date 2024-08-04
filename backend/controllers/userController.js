@@ -8,7 +8,28 @@ import validator from "validator"
 //creating loginuser 
 
 const loginUser = async (req,res) => {
+    const {email,password} = req.body;
+    try {
+        const user  = await userModel.findOne({email})
 
+        if (!user) {
+            return res.json({success:false,message:"User hai hi nahi"})
+        }
+
+        const isMatched = await bcrypt.compare(password,user.password);
+
+        if (!isMatched) {
+            return res.json({success:false,message:"invalid credentials"})
+        }
+        //if password is matched we will create the user token
+        const token  = createToken(user._id); 
+        res.json({success:true,token})
+
+    } catch (error) {
+        console.log(error);
+        res.findOnejson({success:false,message:"error"})
+        
+    }
 }
 
 const createToken = (id) => {
