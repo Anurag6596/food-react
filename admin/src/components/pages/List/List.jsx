@@ -19,6 +19,20 @@ const List = () => {
       toast.error("ERROR");
     }
   }
+
+  const removeFood = async (foodId) => {
+      // console.log(foodId);
+      const response = await axios.post(`${url}/api/food/remove`, {id:foodId});
+      await fetchList();
+      if (response.data.success) {
+        toast.success(response.data.message)
+      }
+      else{
+        toast.error("Error to remove food item")
+      }
+  }
+
+
   useEffect(()=>{
     fetchList();
   },[])
@@ -41,7 +55,7 @@ const List = () => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price}</p>
-              <p className='cursor'>X</p>
+              <p onClick={()=>removeFood(item._id)} className='cursor'>X</p>
             </div>  
           )
         })} 
