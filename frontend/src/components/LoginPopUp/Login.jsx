@@ -16,34 +16,36 @@ const Login = ({setShowLogin}) => {
         password:""
     })
 
-    const onChangeHandler = (e) =>{
-        const name = e.target.name;
-        const value = e.target.value;
-        setData(data => ({...data, [name]: value}))
+    const onChangeHandler = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setData(data=>({...data,[name]:value}))
     }
+    // useEffect(() => {
+    //     console.log(data);
+    // },[data])
 
-    const onLogin = async (e) => {
-        e.preventDefault();
-        let newUrl = url;
+    const onLogin = async (event) => {
+        event.preventDefault() //this is curently not working 
+        let newUrl = url; // here we have created the copy of url
+
         if (currentState==="Login") {
-            newUrl += "/api/user.login"
+            newUrl += "/api/user/login"
         }
         else{
             newUrl += "/api/user/register"
         }
 
-
-        const response = await axios.post(newUrl,data); //this API is  for both login an register
-        
+        const response = await axios.post(newUrl,data); //this api will work for bith login  and register
         if (response.data.success) {
             setToken(response.data.token);
-            localStorage.setItem("token",response.data.token);
+            localStorage.setItem("token",response.data.token) // saving the token to the local storage
             setShowLogin(false);
         }
         else{
-            alert(response.data.message);
+            alert(response.data.message)
         }
-    };
+    }
 
   return (
     <div className='login'>
