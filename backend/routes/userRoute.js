@@ -5,8 +5,8 @@ import { loginUser,registerUser } from '../controllers/userController.js'
 
 const userRouter = express.Router();
 
-userRouter.post("/register",registerUser); //endoint for register 
 userRouter.post("/login",loginUser); //endpoint for login
+userRouter.post("/register",registerUser); //endoint for register 
 
 
 export default userRouter;

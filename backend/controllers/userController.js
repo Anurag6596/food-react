@@ -16,9 +16,9 @@ const loginUser = async (req,res) => {
             return res.json({success:false,message:"User hai hi nahi"})
         }
 
-        const isMatched = await bcrypt.compare(password,user.password);
+        const isMatch = await bcrypt.compare(password,user.password);
 
-        if (!isMatched) {
+        if (!isMatch) {
             return res.json({success:false,message:"invalid credentials"})
         }
         //if password is matched we will create the user token
@@ -59,7 +59,7 @@ const registerUser = async (req,res) => {
 
         //hasing the user password
 
-        const salt = await bcrypt.genSalt(10)
+        const salt = await bcrypt.genSalt(10) // the more no. round the more time it will take
         const hashedPassword = await bcrypt.hash(password,salt)
 
         const newUser = new userModel({

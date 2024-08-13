@@ -7,16 +7,20 @@ import foodRouter from './routes/foddRoute.js'
 import userRouter from './routes/userRoute.js'
 import 'dotenv/config'
 
-
 // app config
 
 const app = express()
 const port = 4000
 
-
 // middle ware 
 app.use(express.json())  // request from frontend to backend will be pardes here
 app.use(cors()) // we can accesss the backend data from any frontend
+
+// const corsOptions = {
+//      origin: "http://localhost:5173/",
+//     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+//   };
+//   app.use(cors(corsOptions));
 
 // db connection 
 
@@ -35,3 +39,4 @@ app.get("/",(req,res)=>{
 app.listen(port,()=>{
     console.log(`Server chalu hai https://localhost:${port}`)
 })
+
